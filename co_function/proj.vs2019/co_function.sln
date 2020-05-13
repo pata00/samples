@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "co_function", "co_function.vcxproj", "{06DFE4AB-F666-4AAC-97E2-E2249DEC9B3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06DFE4AB-F666-4AAC-97E2-E2249DEC9B3D}.Debug|x64.ActiveCfg = Debug|x64
+		{06DFE4AB-F666-4AAC-97E2-E2249DEC9B3D}.Debug|x64.Build.0 = Debug|x64
+		{06DFE4AB-F666-4AAC-97E2-E2249DEC9B3D}.Release|x64.ActiveCfg = Release|x64
+		{06DFE4AB-F666-4AAC-97E2-E2249DEC9B3D}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6EA3194A-AB1E-49C3-AB9D-034C350F32C9}
+	EndGlobalSection
+EndGlobal

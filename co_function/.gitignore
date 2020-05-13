@@ -1,0 +1,4 @@
+proj.vs2019/.vs
+proj.vs2019/x64
+proj.vs2019/*.user
+src/main
