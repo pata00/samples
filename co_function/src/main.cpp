@@ -7,13 +7,13 @@
 //https://blog.panicsoftware.com/your-first-coroutine/
 
 
-co_function test_co_function() {
-    std::cout << u8"enter test_fun02" << std::endl;
-    co_await std::experimental::suspend_always();
-    std::cout << u8"enter test_fun02" << std::endl;
-    co_return 1;
-}
+co_function<void> test_co_function() {
 
+    std::cout << u8"enter test_fun02" << std::endl;
+    co_await std::suspend_always();
+    std::cout << u8"enter test_fun02" << std::endl;
+    co_return;
+}
 
 int main(int argc, char* argv[])
 {
@@ -22,8 +22,8 @@ int main(int argc, char* argv[])
         t.resume();
     };
 
-    auto ret = t.get_ret_value();
+    //auto ret = t.get_ret_value();
 
-    std::cout << u8"test_co_function return :" << ret << std::endl;
+    //std::cout << u8"test_co_function return :" << ret << std::endl;
     return 0;
 }
