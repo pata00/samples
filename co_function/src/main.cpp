@@ -10,7 +10,7 @@
 co_function<void> test_co_function() {
 
     std::cout << u8"enter test_fun02" << std::endl;
-    co_await std::suspend_always();
+    co_await std::experimental::suspend_always();
     std::cout << u8"enter test_fun02" << std::endl;
     co_return;
 }
