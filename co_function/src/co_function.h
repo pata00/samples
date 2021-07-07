@@ -8,15 +8,15 @@
 //https://docs.microsoft.com/zh-cn/cpp/preprocessor/predefined-macros?view=vs-2019
 #ifdef _MSC_VER//msvc编译器
 	#if _MSC_VER >= 1925
-#include <experimental/coroutine>
-namespace co_operator {
-	using suspend_always = std::experimental::suspend_always;
-};
+		#include <experimental/coroutine>
+		namespace co_operator {
+			using suspend_always = std::experimental::suspend_always;
+		};
 
-namespace co_function_detail {
-	template<typename T>
-	using coroutine_handle = typename std::experimental::coroutine_handle<T>;
-}
+		namespace co_function_detail {
+			template<typename T>
+			using coroutine_handle = typename std::experimental::coroutine_handle<T>;
+		}
 	#else
 		#error "msvc编译器版本过低"
 	#endif
@@ -24,15 +24,15 @@ namespace co_function_detail {
 	//输出g++预定义宏 gcc -x c++ /dev/null -dM -E -std=c++17
 	#ifdef __GNUC__
 		#if (__GNUC__ >= 10) && (__GNUC_MINOR__ >= 1)
-#include <coroutine>
-namespace co_operator {
-	using suspend_always = std::suspend_always;
-};
+			#include <coroutine>
+			namespace co_operator {
+				using suspend_always = std::suspend_always;
+			};
 
-namespace co_function_detail {
-	template<typename T>
-	using coroutine_handle = typename std::coroutine_handle<T>;
-};
+			namespace co_function_detail {
+				template<typename T>
+				using coroutine_handle = typename std::coroutine_handle<T>;
+			};
 		#else
 			#error "g++ 版本过低"
 		#endif
@@ -64,7 +64,7 @@ public:
 			std::terminate();
 		}
 
-		auto final_suspend() {
+		auto final_suspend() noexcept {
 			return co_operator::suspend_always();
 		}
 	};
@@ -128,7 +128,7 @@ public:
 			std::terminate();
 		}
 
-		auto final_suspend() {
+		auto final_suspend() noexcept {
 			return co_operator::suspend_always();
 		}
 	};
