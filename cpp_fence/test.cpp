@@ -16,6 +16,12 @@ void thread_recv() {
         //  g++-9    Y   N   N   N
         //  g++-10   Y   N   Y   Y
         //  g++-12   Y   N   Y   Y
+        //  对比其生成的汇编代码，总结如下:
+        //    -O0无优化:循环中每次都从内存读取数据,正确运行没毛病
+        //    -O1优化为:循环外读取内存数据到寄存器,循环中只比较寄存器的值,故无法感知其他核对内存的修改导致死循环
+        //    -O2 -O3 在高版本编译中因为循环内什么都没做，相当于循环直接被优化成空，所以没有死循环了,
+        //       但是会有内存错误,因为queue为空的状态下取了front,打印顺序可以验证，用valgrind也可以检测得到
+
 
         // std::atomic_thread_fence(std::memory_order_consume);
     }
@@ -24,6 +30,7 @@ void thread_recv() {
     auto str = std::move(queue.front());
     queue.pop_front();
     mtx.unlock();
+    printf("thread_recv get msg:%s\n", str.c_str());
 }
 
 void thread_send() {
