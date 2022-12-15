@@ -1,3 +1,4 @@
+#include <cassert>
 #include <cstdio>
 #include <deque>
 #include <mutex>

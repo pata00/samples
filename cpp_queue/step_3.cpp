@@ -24,7 +24,12 @@ void thread_recv(int count) {
             busy_loop_cnt++;
         }
         auto str = std::move(queue.front());
-        assert(str == std::to_string(i));
+        assert(str == std::to_string(i)); // macos下，不管是consume还是acquire，都会触发此断言
+// 测试环境为
+// Apple clang version 14.0.0 (clang-1400.0.29.202)
+// Target: x86_64-apple-darwin22.1.0
+// Thread model: posix
+// InstalledDir: /Library/Developer/CommandLineTools/usr/bin
         {
             auto lg = std::unique_lock(shared_mtx);
             queue.pop_front();
