@@ -9,8 +9,6 @@
 std::shared_mutex shared_mtx;
 std::deque<std::string> queue;
 
-constexpr const char* msg = "can you out loop";
-
 void thread_recv(int count) {
     printf("thread_recv begin loop\n");
     int busy_loop_cnt = 0;
@@ -24,7 +22,9 @@ void thread_recv(int count) {
             busy_loop_cnt++;
         }
         auto str = std::move(queue.front());
-        assert(str == std::to_string(i)); // macos下，不管是consume还是acquire，都会触发此断言
+        assert(str == std::to_string(i)); 
+// macos下，不管是consume还是acquire，都会触发上述断言，只能通过读写锁来同步
+// 估计跟其stl实现有关，盲猜queue.emplace_back的实现，没有彻底做完就修改了size导致queue.emtpy()先通过了判断，导致后续读数据的时候对面还没写完
 // 测试环境为
 // Apple clang version 14.0.0 (clang-1400.0.29.202)
 // Target: x86_64-apple-darwin22.1.0
